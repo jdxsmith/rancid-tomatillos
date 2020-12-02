@@ -1,9 +1,10 @@
 import React from 'react';
+import './Poster.css';
 
 const Poster = ({image}) => {
     return (
         <article>
-            <img src={image}></img>
+            <img className='poster' src={image}></img>
         </article>
     )
 }
