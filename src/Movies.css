@@ -3,4 +3,13 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
+    place-items: center;
+}
+
+.movies-section-title {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-family: 'Syne Mono', monospace;
+    color: whitesmoke;
 }

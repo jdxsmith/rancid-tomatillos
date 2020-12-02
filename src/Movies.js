@@ -15,7 +15,7 @@ const { movies } = props;
 
     return (
         <section>
-            <h2>Movies</h2>
+            <h2 className='movies-section-title'>Movies</h2>
             <article className='movie-posters-container'>
                 {moviePosters}
             </article>

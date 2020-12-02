@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <section>
-        <h1>Rancid Tomatillos</h1>
+        <h1 className='page-title'>Rancid Tomatillos</h1>
         <Movies movies={this.state.movies}/>
       </section>
     )
