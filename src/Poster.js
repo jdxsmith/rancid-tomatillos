@@ -1,10 +1,10 @@
 import React from 'react';
 import './Poster.css';
 
-const Poster = ({image}) => {
+const Poster = ({image, id, findPoster}) => {
     return (
         <article>
-            <img className='poster' src={image}></img>
+            <img alt='movie poster' className='poster' onClick={() => findPoster(id)} src={image}></img>
         </article>
     )
 }

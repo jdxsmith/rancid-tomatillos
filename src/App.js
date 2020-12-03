@@ -11,11 +11,17 @@ class App extends Component {
     }
   }
 
+  findPoster = (id) => {
+    const selectedMovie = this.state.movies.find(movie => movie.id === id);
+    alert(id)
+    this.setState({ movies: selectedMovie });
+  }
+
   render() {
     return (
       <section>
         <h1 className='page-title'>Rancid Tomatillos</h1>
-        <Movies movies={this.state.movies}/>
+        <Movies movies={this.state.movies} findPoster={this.findPoster}/>
       </section>
     )
   }
