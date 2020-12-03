@@ -9,3 +9,9 @@
 body {
   background-color: #211e1e;
 }
+
+.movie-info {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

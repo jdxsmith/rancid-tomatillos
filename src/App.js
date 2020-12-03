@@ -19,7 +19,7 @@ class App extends Component {
 
   render() {
     const movieInfo = 
-      <section>
+      <section className='movie-info'>
         <p>{this.state.movies[0].title}</p>
         <p>Average Rating: {this.state.movies[0].average_rating}</p>
         <p>Release Date: {this.state.movies[0].release_date}</p>
