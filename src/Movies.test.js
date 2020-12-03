@@ -1,10 +1,10 @@
 import React from 'react'
 import { fireEvent, render, screen } from '@testing-library/react'
-import App from './App.js'
+import Movies from './Movies.js'
 import '@testing-library/jest-dom'
 
-describe('App', () => {
-  it('should render correctly', () => {
-      
-  })
+describe('Movies', () => {
+    it('should render correctly', () => {
+        
+    })
 })
