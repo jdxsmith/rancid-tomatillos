@@ -13,3 +13,9 @@
     font-family: 'Syne Mono', monospace;
     color: whitesmoke;
 }
+
+.single-poster {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
