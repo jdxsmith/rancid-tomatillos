@@ -12,8 +12,8 @@ class App extends Component {
   }
 
   findPoster = (id) => {
-    const selectedMovie = this.state.movies.find(movie => movie.id === id);
-    alert(id)
+    const selectedMovie = this.state.movies.filter(movie => movie.id === id);
+
     this.setState({ movies: selectedMovie });
   }
 
@@ -22,6 +22,7 @@ class App extends Component {
       <section>
         <h1 className='page-title'>Rancid Tomatillos</h1>
         <Movies movies={this.state.movies} findPoster={this.findPoster}/>
+        {this.state.movies.length === 1 && <section><p>{this.state.movies[0].title}</p><p>Average Rating: {this.state.movies[0].average_rating}</p><p>Release Date: {this.state.movies[0].release_date}</p></section>}
       </section>
     )
   }
