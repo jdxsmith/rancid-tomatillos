@@ -1,4 +1,20 @@
 .poster {
     width: 250px;
     height: 375px;
+    transition: width .75s, height .75s;
+}
+
+.poster:hover {
+    cursor: pointer;
+    z-index: 2;
+    transition: width .75s, height .75s;
+    width: 350px;
+    height: 525px;
+    box-shadow: 0 8px 16px 0;
+}
+
+.locked-poster {
+    width: 250px;
+    height: 375px;
+    box-shadow: 0 8px 16px 0;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Poster from './Poster';
 import './Movies.css';
 
-const Movies = ({movies, findPoster}) => {
+const Movies = ({movies, findPoster, isSinglePoster}) => {
 
     const moviePosters = movies.map(movie => {
         return (
@@ -12,6 +12,7 @@ const Movies = ({movies, findPoster}) => {
                 id={movie.id}
                 key={movie.id}
                 findPoster={findPoster}
+                isSinglePoster={isSinglePoster}
             />
         )
     })

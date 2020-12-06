@@ -8,6 +8,7 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
+      isSinglePoster: false,
     }
   }
 
@@ -20,16 +21,16 @@ class App extends Component {
   findPoster = (id) => {
     const selectedMovie = this.state.movies.filter(movie => movie.id === id);
 
-    this.setState({ movies: selectedMovie });
+    this.setState({ movies: selectedMovie, isSinglePoster: true });
   }
 
   setMovieInfo = () => {
     return(
       <section className='movie-info'>
         <p>{this.state.movies[0].title}</p>
-        <p>Average Rating: {this.state.movies[0].average_rating}</p>
+        <p>Average Rating: {this.state.movies[0].average_rating.toFixed(1)}</p>
         <p>Release Date: {this.state.movies[0].release_date}</p>
-        <button onClick={() => window.location.reload()}>Go Back</button>
+        <button className='go-back-btn' onClick={() => window.location.reload()}>Go Back</button>
       </section>
     )
   }
@@ -40,8 +41,8 @@ class App extends Component {
     return (
       <section>
         <h1 className='page-title'>Rancid Tomatillos</h1>
-        <Movies movies={this.state.movies} findPoster={this.findPoster}/>
-        {this.state.movies.length === 1 &&  this.setMovieInfo()}
+        <Movies movies={this.state.movies} findPoster={this.findPoster} isSinglePoster={this.state.isSinglePoster}/>
+        {this.state.movies.length === 1 && this.setMovieInfo()}
       </section>
     )
   }
