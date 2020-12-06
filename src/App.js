@@ -14,7 +14,7 @@ class App extends Component {
   componentDidMount() {
     movieData()
     .then(movies => this.setState({ movies: movies.movies }))
-    .catch(err => console.error(err.message))
+    .catch(error => console.log(error))
   }
 
   findPoster = (id) => {
@@ -33,6 +33,8 @@ class App extends Component {
       </section>
     )
   }
+
+
 
   render() {
     return (

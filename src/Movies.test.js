@@ -3,6 +3,8 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import Movies from './Movies.js'
 import '@testing-library/jest-dom'
 import movieData from './movieData.js'
+// import { movieData } from './apiCalls.js';
+// jest.mock('./apiCalls');
 
 describe('Movies', () => {
     it('should render correctly', () => {
