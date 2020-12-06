@@ -28,9 +28,9 @@ class App extends Component {
     return(
       <section className='movie-info'>
         <p>{this.state.movies[0].title}</p>
-        <p>Average Rating: {this.state.movies[0].average_rating}</p>
+        <p>Average Rating: {this.state.movies[0].average_rating.toFixed(1)}</p>
         <p>Release Date: {this.state.movies[0].release_date}</p>
-        <button onClick={() => window.location.reload()}>Go Back</button>
+        <button className='go-back-btn' onClick={() => window.location.reload()}>Go Back</button>
       </section>
     )
   }
