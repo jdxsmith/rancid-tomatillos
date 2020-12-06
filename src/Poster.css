@@ -1,4 +1,18 @@
 .poster {
     width: 250px;
     height: 375px;
+    transition: width .75s, height .75s;
+}
+
+.poster:hover {
+    cursor: pointer;
+    z-index: 2;
+    transition: width .75s, height .75s;
+    width: 350px;
+    height: 525px;
+}
+
+.locked-poster {
+    width: 250px;
+    height: 375px;
 }
