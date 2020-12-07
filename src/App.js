@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { movieData } from './apiCalls.js';
 import Movies from './Movies.js';
 import './App.css';
+import {Route} from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -41,7 +42,7 @@ class App extends Component {
     return (
       <section>
         <h1 className='page-title'>Rancid Tomatillos</h1>
-        <Movies movies={this.state.movies} findPoster={this.findPoster} isSinglePoster={this.state.isSinglePoster}/>
+        <Route path='/' component={ () => <Movies movies={this.state.movies} findPoster={this.findPoster} isSinglePoster={this.state.isSinglePoster}/> }/>
         {this.state.movies.length === 1 && this.setMovieInfo()}
       </section>
     )
