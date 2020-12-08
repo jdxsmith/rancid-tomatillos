@@ -36,14 +36,25 @@ class App extends Component {
     )
   }
 
-
-
   render() {
     return (
       <section>
         <h1 className='page-title'>Rancid Tomatillos</h1>
-        <Route path='/' component={ () => <Movies movies={this.state.movies} findPoster={this.findPoster} isSinglePoster={this.state.isSinglePoster}/> }/>
-        {this.state.movies.length === 1 && this.setMovieInfo()}
+        <Route exact path='/' render={ () => <Movies movies={this.state.movies} findPoster={this.findPoster} isSinglePoster={this.state.isSinglePoster}/> }/>
+        <Route 
+          exact
+          path='/:id'
+          render={({ match }) => {
+            const poster = this.state.movies.find(movie => movie.id === parseInt(match.params.id));
+            
+            if (!poster) {
+              return <div>Sorry, no poster found with that id!</div>
+            }
+            
+            return <Movies movies={this.state.movies} findPoster={this.findPoster} isSinglePoster={this.state.isSinglePoster} />
+          }}
+          />
+          {this.state.movies.length === 1 && this.setMovieInfo()}
       </section>
     )
   }
