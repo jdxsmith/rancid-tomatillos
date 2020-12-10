@@ -2,8 +2,8 @@ import React from 'react';
 import Poster from './Poster';
 import './Movies.css';
 
-const Movies = ({movies, aMovie, findPoster, isSinglePoster}) => {
-    const test1 = aMovie;
+const Movies = ({movies, movieDetails, isSinglePoster}) => {
+    const singleMovieDetails = movieDetails;
     const moviePosters = movies.map(movie => {
         return (
             <Poster
@@ -11,7 +11,6 @@ const Movies = ({movies, aMovie, findPoster, isSinglePoster}) => {
                 aria-label='movie'
                 id={movie.id}
                 key={movie.id}
-                findPoster={findPoster}
                 isSinglePoster={isSinglePoster}
             />
         )
@@ -23,8 +22,7 @@ const Movies = ({movies, aMovie, findPoster, isSinglePoster}) => {
             <article data-testid='movies-container' className={movies.length === 1 ? 'single-poster' : 'movie-posters-container'}>
                 {moviePosters}
             </article>
-            {/* {test1} */}
-            {movies && test1 }
+            { movies && singleMovieDetails }
         </section>
     )
 }
