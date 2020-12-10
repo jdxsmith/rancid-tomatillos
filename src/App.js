@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { movieData } from './apiCalls.js';
+import { movieData, movieDetailsById } from './apiCalls.js';
 import Movies from './Movies.js';
-import Poster from './Poster.js';
 import './App.css';
 import {Route, Switch, Link} from 'react-router-dom';
 
@@ -10,26 +9,39 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
+      selectedMovie: {},
       isSinglePoster: false,
     }
   }
 
-  componentDidMount() {
-    movieData()
+  componentDidMount = async () => {
+    await movieData()
     .then(movies => this.setState({ movies: movies.movies }))
     .catch(error => console.log(error))
   }
 
+  singleMovieFetch = async (id) => {
+    const movieDetails = await movieDetailsById(id);
+    this.setState({
+      selectedMovie: movieDetails,
+    })
+  }
+
   setMovieInfo = () => {
+    const currentMovie = this.state.selectedMovie.movie;
     return(
-      <section className='movie-info'>
-        <p>{this.state.movies[0].title}</p>
-        <p>Average Rating: {this.state.movies[0].average_rating.toFixed(1)}</p>
-        <p>Release Date: {this.state.movies[0].release_date}</p>
-        <Link to='/'>
-          <button className='go-back-btn' to='/'>Go Back</button>
-        </Link>
-      </section>
+        <section className='movie-info'>
+          {currentMovie !== undefined && <p>{currentMovie.title}</p>}
+          {currentMovie !== undefined && this.state.selectedMovie.movie.tagline.length > 0 && <p>{currentMovie.tagline}</p>}
+          {currentMovie !== undefined && <p>Average Rating: {currentMovie.average_rating.toFixed(1)}</p>}
+          {currentMovie !== undefined && <p>Release Date: {currentMovie.release_date}</p>}
+          {currentMovie !== undefined && <p>Overview: {currentMovie.overview}</p>}
+          {currentMovie !== undefined && <p>Genre(s): {currentMovie.genres.map(genre => `${genre}, `)}</p>}
+          {currentMovie !== undefined && <p>Runtime: {currentMovie.runtime} minutes</p>}
+          <Link to='/'>
+            <button className='go-back-btn' to='/'>Go Back</button>
+          </Link>
+        </section>
     )
   }
 
@@ -50,16 +62,18 @@ class App extends Component {
             exact
             path='/:id'
             render={({ match }) => {
+              const id = parseInt(match.params.id);
+              this.state.selectedMovie.id !== Number(id) && this.singleMovieFetch(id);
               const poster = this.state.movies.filter(movie => movie.id === parseInt(match.params.id));
-              console.log(poster);
               this.state.isSinglePoster = true;
               
               if (poster.length > 0) {
-                const test = this.setMovieInfo();
+                const selectedMovieInfo = this.setMovieInfo();
                 return <Movies
                   movies={poster} 
-                  aMovie={test} 
+                  movieDetails={selectedMovieInfo} 
                   isSinglePoster={this.state.isSinglePoster} 
+                  // selectedMovie={this.state.selectedMovie}
                 />
               } else {
                 return (
@@ -80,9 +94,3 @@ class App extends Component {
 }
 
 export default App;
-//  if (poster) {
-//                 const test = this.setMovieInfo();
-//                 return <Poster 
-//                   image={poster.poster_path}
-//                   id={poster.id}
-//                   isSinglePoster={true}
