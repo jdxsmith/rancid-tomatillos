@@ -3,6 +3,10 @@ const movieData = () => {
   .then(response => response.json())
 }
 
+const movieDetailsById = (id) => {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+  .then(response => response.json())
+}
 
 // Potential method for dealing with server errors 👇
 // const movieData = async () => {
@@ -14,4 +18,4 @@ const movieData = () => {
 //   } 
 // }
 
-export { movieData };
+export { movieData, movieDetailsById };
