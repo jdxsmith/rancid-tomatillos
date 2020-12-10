@@ -4,6 +4,7 @@ import App from './App.js';
 import '@testing-library/jest-dom';
 import { movieData } from './apiCalls';
 jest.mock('./apiCalls.js');
+import { MemoryRouter } from "react-router-dom";
 
 describe('App', () => {
     it('should render correctly', async () => {
@@ -17,7 +18,11 @@ describe('App', () => {
             release_date: "2020-09-29",
         }
       ]});
-      render(<App />);
+      render(
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      );
 
       const movieInfo = await waitFor(() => screen.getByAltText('movie poster'));
       const moviesSection = await waitFor(() => screen.getByText('Movies'));
@@ -53,12 +58,16 @@ describe('App', () => {
             release_date: "2020-08-20"
       },
       ]});
-      render(<App />);
+      render(
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      );
 
       const movieInfo = await waitFor(() => screen.getAllByAltText('movie poster'));
       fireEvent.click(movieInfo[0]);
 
-      const goBackBtn = await waitFor(() => screen.getByText('Go Back'));
+      const goBackBtn = screen.getByText('Go Back');
 
       expect(goBackBtn).toBeInTheDocument();
 
