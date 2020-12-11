@@ -65,14 +65,14 @@ class App extends Component {
               const id = parseInt(match.params.id);
               this.state.selectedMovie.id !== Number(id) && this.singleMovieFetch(id);
               const poster = this.state.movies.filter(movie => movie.id === parseInt(match.params.id));
-              this.state.isSinglePoster = true;
+              // this.state.isSinglePoster = true;
               
               if (poster.length > 0) {
                 const selectedMovieInfo = this.setMovieInfo();
                 return <Movies
                   movies={poster} 
                   movieDetails={selectedMovieInfo} 
-                  isSinglePoster={this.state.isSinglePoster} 
+                  isSinglePoster={true} 
                   // selectedMovie={this.state.selectedMovie}
                 />
               } else {
