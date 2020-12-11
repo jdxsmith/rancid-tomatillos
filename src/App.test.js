@@ -148,7 +148,7 @@ describe('App', () => {
 
       fireEvent.click(movieInfo[0]);
 
-      const runtime = screen.getByText('Runtime');
+      const runtime = await waitFor(() => screen.getByText('Runtime'));
 
       expect(runtime).toBeInTheDocument();
       

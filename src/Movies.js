@@ -2,8 +2,8 @@ import React from 'react';
 import Poster from './Poster';
 import './Movies.css';
 
-const Movies = ({movies, movieDetails, isSinglePoster}) => {
-    const singleMovieDetails = movieDetails;
+const Movies = ({movies, /* movieDetails */ isSinglePoster, selectedMovie, syncMovieId}) => {
+    // const singleMovieDetails = movieDetails;
     const moviePosters = movies.map(movie => {
         return (
             <Poster
@@ -12,6 +12,8 @@ const Movies = ({movies, movieDetails, isSinglePoster}) => {
                 id={movie.id}
                 key={movie.id}
                 isSinglePoster={isSinglePoster}
+                selectedMovie={selectedMovie}
+                syncMovieId={syncMovieId}
             />
         )
     })
@@ -22,7 +24,7 @@ const Movies = ({movies, movieDetails, isSinglePoster}) => {
             <article data-testid='movies-container' className={movies.length === 1 ? 'single-poster' : 'movie-posters-container'}>
                 {moviePosters}
             </article>
-            { movies && singleMovieDetails }
+            {/* { movies && singleMovieDetails } */}
         </section>
     )
 }
