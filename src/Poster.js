@@ -24,6 +24,7 @@ const Poster = ({image, id, isSinglePoster}) => {
     // ----------------------------------------------------------------------------------
 
     const setMovieInfo = () => {
+        window.scrollTo(0, 0);
         const currentMovie = selectedMovie.movie;
 
         return(
@@ -46,7 +47,7 @@ const Poster = ({image, id, isSinglePoster}) => {
     }
 
     return (
-        <article>
+        <article className='movie-info'>
             <Link to={ `/${id}` }>
                 <img 
                     alt='movie poster' 
