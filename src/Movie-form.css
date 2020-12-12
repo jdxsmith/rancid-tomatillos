@@ -1,0 +1,18 @@
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+.genre-search-bar {
+  border-radius: 5px;
+  border-style: hidden;
+  font-family: 'Syne Mono', monospace;
+
+}
+
+.genre-search-button {
+  border-radius: 5px;
+  border-style: hidden;
+  margin-left: .5em;
+  font-family: 'Syne Mono', monospace;
+}
