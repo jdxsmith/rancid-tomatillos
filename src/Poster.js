@@ -28,7 +28,7 @@ const Poster = ({image, id, isSinglePoster}) => {
         const currentMovie = selectedMovie.movie;
 
         return(
-            <section className='movie-info'>
+            <section className='movie-info movie-info-background'>
                 {(currentMovie &&  Object.keys(currentMovie).length) && 
                     <React.Fragment>
                         <p>{currentMovie.title}</p>

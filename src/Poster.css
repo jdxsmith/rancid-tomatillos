@@ -1,8 +1,13 @@
+p {
+    margin: 19px 100px 15px 100px;
+}
+
 .poster {
     width: 250px;
     height: 375px;
     transition: width .75s, height .75s;
     color: #000;
+    z-index: 1;
 }
 
 .poster:hover {
@@ -21,4 +26,14 @@
     color: #000;
     /* display: flex;
     justify-content: center; */
+}
+
+.movie-info-background {
+    background-color:#171313;
+    box-shadow: black 8px 8px 8px 8px;
+    width: 75%;
+    opacity: 85%;
+    border-radius: 20px;
+    padding: 10px;
+    margin-top: 3%;
 }
