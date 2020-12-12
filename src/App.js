@@ -29,6 +29,10 @@ class App extends Component {
     })
   }
 
+  getFilteredMovies = (moviesToFilter) => {
+    this.setState({movies: moviesToFilter});
+  }
+
   render() {
     return (
       <section>
@@ -40,10 +44,14 @@ class App extends Component {
             render={ () => { 
               return (
               <section>
-                <MovieForm />
-                <Movies movies={this.state.movies} 
-                findPoster={this.findPoster} 
-                isSinglePoster={this.state.isSinglePoster}/> 
+                <MovieForm 
+                  movies={this.state.movies}
+                  getFilteredMovies={this.getFilteredMovies}  
+                />
+                <Movies 
+                  movies={this.state.movies} 
+                  findPoster={this.findPoster} 
+                  isSinglePoster={this.state.isSinglePoster}/> 
               </section>
               )
             }
