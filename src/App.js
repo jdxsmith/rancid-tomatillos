@@ -3,6 +3,7 @@ import { movieData, movieDetailsById } from './apiCalls.js';
 import Movies from './Movies.js';
 import './App.css';
 import {Route, Switch, Link} from 'react-router-dom';
+import { MovieForm } from './Movie-form.js';
 
 class App extends Component {
   constructor() {
@@ -28,6 +29,10 @@ class App extends Component {
     })
   }
 
+  getFilteredMovies = (moviesToFilter) => {
+    this.setState({movies: moviesToFilter});
+  }
+
   render() {
     return (
       <section>
@@ -36,9 +41,20 @@ class App extends Component {
           <Route 
             exact 
             path='/' 
-            render={ () => <Movies movies={this.state.movies} 
-            findPoster={this.findPoster} 
-            isSinglePoster={this.state.isSinglePoster}/> 
+            render={ () => { 
+              return (
+              <section>
+                <MovieForm 
+                  movies={this.state.movies}
+                  getFilteredMovies={this.getFilteredMovies}  
+                />
+                <Movies 
+                  movies={this.state.movies} 
+                  findPoster={this.findPoster} 
+                  isSinglePoster={this.state.isSinglePoster}/> 
+              </section>
+              )
+            }
           }
           />
           <Route 

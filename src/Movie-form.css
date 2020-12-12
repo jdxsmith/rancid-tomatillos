@@ -1,0 +1,30 @@
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+.title-search-bar {
+  border-radius: 5px;
+  border-style: hidden;
+  font-family: 'Syne Mono', monospace;
+
+}
+
+.title-search-button {
+  border-radius: 5px;
+  border-style: hidden;
+  margin-left: .5em;
+  font-family: 'Syne Mono', monospace;
+}
+
+.error-message {
+  font-family: 'Syne Mono', monospace;
+  font-size: 1.5em;
+  color: red;
+}
+
+.searched-movies-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
