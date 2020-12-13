@@ -1,14 +1,15 @@
 import React from 'react';
-import { fireEvent, render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import App from './App.js';
 import '@testing-library/jest-dom';
 import { movieData , movieDetailsById } from './apiCalls.js';
 import { MemoryRouter } from "react-router-dom";
 jest.mock('./apiCalls.js');
 
-describe.only('App', () => {
+describe('Movie Form', () => {
   beforeEach(() => {
-    movieData.mockResolvedValue({movies: [
+    movieData.mockResolvedValueOnce({movies: [
       {
         id: 1,
         poster_path: "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg",
@@ -59,38 +60,35 @@ describe.only('App', () => {
       </MemoryRouter>
     );
   })
+  it('search bar should render correctly', async () => {
+    const searchBarPlaceholder = screen.getByPlaceholderText('Movie');
 
-  it('should render correctly', async () => {
-    const movieInfo = await waitFor(() => screen.getAllByAltText('movie poster'));
-    const moviesSection = await waitFor(() => screen.getByText('Movies'));
-
-    movieInfo.forEach(movie => {
-      expect(movie).toBeInTheDocument();
-    })
-    expect(moviesSection).toBeInTheDocument();
+    expect(searchBarPlaceholder).toBeInTheDocument();
   })
 
-  it('should have a Go Back button that returns the user to the home page', async () => {
-    const movieInfo = await waitFor(() => screen.getAllByAltText('movie poster'));
-    
-    fireEvent.click(movieInfo[0]);
+  it('should take in a user input', async () => {
+    const input = screen.getByPlaceholderText('Movie');
 
-    const goBackBtn = await waitFor(() => screen.getByText('Go Back'));
+    act(() => {
+      fireEvent.change(input, { target: {value: 'Money Plane'} });
+    });
 
-    expect(goBackBtn).toBeInTheDocument();
-
-    fireEvent.click(goBackBtn);
-
-    expect(goBackBtn).not.toBeInTheDocument();
+    expect(input.value).toBe('Money Plane');
   })
 
-  it('should display movie info', async () => {
-    const movieInfo = await waitFor(() => screen.getAllByAltText('movie poster'));
+  it('should display an error message when button is clicked with no input', async () => {
+    const input = screen.getByPlaceholderText('Movie');
+    const searchButton = screen.getByText('SEARCH 🔍');
     
-    fireEvent.click(movieInfo[0]);
+    act(() => {
+      fireEvent.change(input, { target: {value: ''} });
+      fireEvent.click(searchButton);
+    });
 
-    const runtime = await waitFor(() => screen.getByText('Runtime: 115 minutes'));
+    const movieInfo = await waitFor(() => screen.getAllByAltText('movie poster'));
+    const errorMessage = screen.getByText('Sorry, no title matches your search. Try searching for another movie.')
 
-    expect(runtime).toBeInTheDocument();
+    expect(errorMessage).toBeInTheDocument();
+    expect(movieInfo.length).toBe(3);
   })
 })
