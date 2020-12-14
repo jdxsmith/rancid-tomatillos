@@ -3,7 +3,7 @@ import './Poster.css';
 import { movieDetailsById } from './apiCalls.js';
 import { Link } from 'react-router-dom';
 
-const Poster = ({image, id, isSinglePoster}) => {
+const Poster = ({ image, id, isSinglePoster }) => {
     // Updateing app state here causes an infinite re-render
     // EXPERIMENTAL HOOKS (Allows us to use some state in our functional component) 👇
     //   * Otherwise we would want to use a class component
@@ -22,21 +22,29 @@ const Poster = ({image, id, isSinglePoster}) => {
         setSelectedMovie(movieDetails)
     }
     // ----------------------------------------------------------------------------------
-
+    
     const setMovieInfo = () => {
         window.scrollTo(0, 0);
         const currentMovie = selectedMovie.movie;
-
+        
         return(
             <section className='movie-info movie-info-background'>
-                {(currentMovie &&  Object.keys(currentMovie).length) && 
+                { (currentMovie &&  Object.keys(currentMovie).length) && 
                     <React.Fragment>
-                        <p>{currentMovie.title}</p>
-                        <p>Average Rating: {currentMovie.average_rating.toFixed(1)}</p>
-                        <p>Release Date: {currentMovie.release_date}</p>
-                        <p>Overview: {currentMovie.overview}</p>
-                        <p>Genre(s): {currentMovie.genres.map(genre => `${genre}, `)}</p>
-                        <p>Runtime: {currentMovie.runtime} minutes</p>
+                        <p>{ currentMovie.title }</p>
+                        <p>Average Rating: { currentMovie.average_rating.toFixed(1) }</p>
+                        <p>Release Date: { currentMovie.release_date }</p>
+                        <p>Overview: { currentMovie.overview }</p>
+                        <p>Genre(s): { currentMovie.genres.map((genre, i) => {
+                            const genreLenth = currentMovie.genres.length
+                            if (genreLenth === i + 1) {
+                                return `and ${genre}`
+                            } else {
+                                return `${genre}, `
+                            }
+                        })
+                        }</p>
+                        <p>Runtime: { currentMovie.runtime } minutes</p>
                         <Link to='/'>
                             <button className='go-back-btn' to='/'>Go Back</button>
                         </Link>    
@@ -51,8 +59,8 @@ const Poster = ({image, id, isSinglePoster}) => {
             <Link to={ `/${id}` }>
                 <img 
                     alt='movie poster' 
-                    className={isSinglePoster === true ? 'locked-poster' : 'poster'} 
-                    src={image}
+                    className={ isSinglePoster === true ? 'locked-poster' : 'poster' } 
+                    src={ image }
                 />
             </Link>
             { isSinglePoster === true && setMovieInfo() }
@@ -60,4 +68,4 @@ const Poster = ({image, id, isSinglePoster}) => {
     )
 }
 
-export default Poster;
+export { Poster };
