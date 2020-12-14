@@ -9,7 +9,7 @@ jest.mock('./apiCalls.js');
 
 describe('Movie Form', () => {
   beforeEach(() => {
-    movieData.mockResolvedValueOnce({movies: [
+    movieData.mockResolvedValueOnce({ movies: [
       {
         id: 1,
         poster_path: "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg",
@@ -35,7 +35,7 @@ describe('Movie Form', () => {
         release_date: "2020-08-20"
       },
     ]});
-    movieDetailsById.mockResolvedValue({movie: {
+    movieDetailsById.mockResolvedValue({ movie: {
       id: 2,
       title: "Mulan",
       poster_path: "https://image.tmdb.org/t/p/original//aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",

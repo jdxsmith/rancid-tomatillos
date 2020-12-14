@@ -6,9 +6,9 @@ import { movieData , movieDetailsById } from './apiCalls.js';
 import { MemoryRouter } from "react-router-dom";
 jest.mock('./apiCalls.js');
 
-describe.only('App', () => {
+describe('App', () => {
   beforeEach(() => {
-    movieData.mockResolvedValue({movies: [
+    movieData.mockResolvedValue({ movies: [
       {
         id: 1,
         poster_path: "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg",
@@ -34,7 +34,7 @@ describe.only('App', () => {
         release_date: "2020-08-20"
       },
     ]});
-    movieDetailsById.mockResolvedValue({movie: {
+    movieDetailsById.mockResolvedValue({ movie: {
       id: 2,
       title: "Mulan",
       poster_path: "https://image.tmdb.org/t/p/original//aKx1ARwG55zZ0GpRvU2WrGrCG9o.jpg",

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { movieData, movieDetailsById } from './apiCalls.js';
-import Movies from './Movies.js';
+import { Movies } from './Movies.js';
 import './App.css';
-import {Route, Switch, Link} from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import { MovieForm } from './Movie-form.js';
 
 class App extends Component {
@@ -23,14 +23,13 @@ class App extends Component {
 
   singleMovieFetch = async (id) => {
     const movieDetails = await movieDetailsById(id);
-    // debugger
     this.setState({
       selectedMovie: movieDetails,
     })
   }
 
   getFilteredMovies = (moviesToFilter) => {
-    this.setState({movies: moviesToFilter});
+    this.setState({ movies: moviesToFilter });
   }
 
   render() {
@@ -45,13 +44,13 @@ class App extends Component {
               return (
               <section>
                 <MovieForm 
-                  movies={this.state.movies}
-                  getFilteredMovies={this.getFilteredMovies}  
+                  movies={ this.state.movies }
+                  getFilteredMovies={ this.getFilteredMovies }  
                 />
                 <Movies 
-                  movies={this.state.movies} 
-                  findPoster={this.findPoster} 
-                  isSinglePoster={this.state.isSinglePoster}/> 
+                  movies={ this.state.movies } 
+                  findPoster={ this.findPoster } 
+                  isSinglePoster={ this.state.isSinglePoster }/> 
               </section>
               )
             }
@@ -65,24 +64,28 @@ class App extends Component {
               const poster = this.state.movies.filter(movie => movie.id === parseInt(match.params.id));
               if (poster.length > 0) {
                 return <Movies
-                  movies={poster} 
-                  isSinglePoster={true} 
-                  movieId={id}
-                  selectedMovie={this.state.selectedMovie}
-                  syncMovieId={this.singleMovieFetch}
+                  movies={ poster } 
+                  isSinglePoster={ true } 
+                  movieId={ id }
+                  selectedMovie={ this.state.selectedMovie }
+                  syncMovieId={ this.singleMovieFetch }
                 />
               } else {
                 return (
-                <div>
-                  <div>Sorry, no poster found with that id!</div>
+                <article>
+                  <p>Sorry, no poster found with that id!</p>
                   <Link to='/'>
-                    <button className='go-back-btn' to='/'>Go Back</button>
+                    <button 
+                      className='go-back-btn' 
+                      to='/'
+                    >Go Back
+                    </button>
                   </Link>
-                </div>
+                </article>
                 )
               }
             }}
-            />
+          />
           </Switch>
       </section>
     )
