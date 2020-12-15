@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 
-const router = <BrowserRouter> <App /> </BrowserRouter>;
+const router = <BrowserRouter basename='/rancid-tomatillos'> <App /> </BrowserRouter>;
 
 ReactDOM.render(
   router,
